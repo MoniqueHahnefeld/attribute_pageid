@@ -54,7 +54,7 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 
 		$arrFieldDef['eval']['size']     = 2;
 		$arrFieldDef['eval']['multiple'] = true;
-		$arrFieldDef['eval']['tl_class'] = 'metamodelsattribute_url';
+		$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
 		// $arrFieldDef['eval']['rgxp']     = 'url';
 
 		$arrFieldDef['wizard'][] = array('MetaModelAttributeUrlHelper', 'pagePicker');
