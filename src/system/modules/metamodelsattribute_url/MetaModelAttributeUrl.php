@@ -29,7 +29,10 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 
 	public function __construct(\IMetaModel $objMetaModel, $arrData = array())
 	{
-		$GLOBALS['TL_CSS']['metamodelsattribute_url'] = 'system/modules/metamodelsattribute_url/html/style.css';
+		if (TL_MODE == 'BE')
+		{
+			$GLOBALS['TL_CSS']['metamodelsattribute_url'] = 'system/modules/metamodelsattribute_url/html/style.css';
+		}
 
 		parent::__construct($objMetaModel, $arrData);
 	}
