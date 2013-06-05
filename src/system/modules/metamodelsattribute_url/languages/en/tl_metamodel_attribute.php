@@ -20,3 +20,4 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['url']    = 'URL';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']            = array('Remove title', 'If selected, only the link field is used.');
