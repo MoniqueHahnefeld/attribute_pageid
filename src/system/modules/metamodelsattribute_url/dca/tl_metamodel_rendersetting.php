@@ -16,12 +16,17 @@
  * @filesource
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['url'] = array
+/**
+ * Table tl_metamodel_rendersetting
+ */
+
+$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['metapalettes']['url extends default'] = array
 (
-	'presentation' => array(
-		'tl_class',
-	),
-	'functions'  => array(
-		'mandatory',
-	)
+	'+advanced' => array('no_external_link'),
+);
+
+$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['fields']['no_external_link'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_rendersetting']['no_external_link'],
+	'inputType'               => 'checkbox',
 );

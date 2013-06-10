@@ -16,12 +16,7 @@
  * @filesource
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['url'] = array
-(
-	'presentation' => array(
-		'tl_class',
-	),
-	'functions'  => array(
-		'mandatory',
-	)
-);
+/**
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_metamodel_rendersetting']['no_external_link'] = array('Do not open as an new tab', 'If selected, the url does not open an new tab.');

@@ -45,6 +45,7 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 	public function getAttributeSettingNames()
 	{
 		return array_merge(parent::getAttributeSettingNames(), array(
+			'no_external_link',
 			'mandatory'
 		));
 	}
@@ -57,9 +58,7 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 
 		$arrFieldDef['eval']['size']     = 2;
 		$arrFieldDef['eval']['multiple'] = true;
-		$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
-		// $arrFieldDef['eval']['rgxp']     = 'url';
-
+		$arrFieldDef['eval']['tl_class'] .= ' wizard inline metamodelsattribute_url';
 		$arrFieldDef['wizard'][] = array('MetaModelAttributeUrlHelper', 'pagePicker');
 
 		return $arrFieldDef;
