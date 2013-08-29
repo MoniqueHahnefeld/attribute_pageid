@@ -16,5 +16,17 @@
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['url']['class'] = 'MetaModelAttributeUrl';
-$GLOBALS['METAMODELS']['attributes']['url']['image'] = 'system/modules/metamodelsattribute_url/html/url.png';
+/**
+ * Table tl_metamodel_rendersetting
+ */
+
+$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['metapalettes']['url extends default'] = array
+(
+	'+advanced' => array('no_external_link'),
+);
+
+$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['fields']['no_external_link'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_rendersetting']['no_external_link'],
+	'inputType'               => 'checkbox',
+);

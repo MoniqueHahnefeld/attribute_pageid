@@ -8,8 +8,9 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2013-05-13T22:14:53+02:00
+ * last-updated: 2013-05-13T23:12:07+02:00
  */
 
-
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['0']    = 'Allontanar il titel';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['1']    = 'Sche quest champ vegn tschernì vegn be il champ da colliaziun utilisà.';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['url'] = 'URL';

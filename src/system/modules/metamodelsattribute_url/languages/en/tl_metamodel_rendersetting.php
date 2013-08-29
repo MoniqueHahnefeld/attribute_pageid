@@ -16,5 +16,7 @@
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['url']['class'] = 'MetaModelAttributeUrl';
-$GLOBALS['METAMODELS']['attributes']['url']['image'] = 'system/modules/metamodelsattribute_url/html/url.png';
+/**
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_metamodel_rendersetting']['no_external_link'] = array('Do not open as an new tab', 'If selected, the url does not open an new tab.');

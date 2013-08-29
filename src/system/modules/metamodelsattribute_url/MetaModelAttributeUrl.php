@@ -45,22 +45,56 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 	public function getAttributeSettingNames()
 	{
 		return array_merge(parent::getAttributeSettingNames(), array(
-			'mandatory'
+			'no_external_link',
+			'mandatory',
+			'trim_title'
 		));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public function valueToWidget($varValue)
+	{
+		if ($this->get('trim_title') && is_array($varValue))
+		{
+			$varValue = $varValue[1];
+		}
+
+		return parent::valueToWidget($varValue);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function widgetToValue($varValue, $intId)
+	{
+		if ($this->get('trim_title') && !is_array($varValue))
+		{
+			$varValue = array(0 => '', 1 => $varValue);
+		}
+
+		return parent::widgetToValue($varValue, $intId);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getFieldDefinition($arrOverrides = array())
 	{
 		$arrFieldDef = parent::getFieldDefinition($arrOverrides);
 
 		$arrFieldDef['inputType'] = 'text';
+		$arrFieldDef['eval']['tl_class'] .= ' wizard inline';
+		$arrFieldDef['wizard']['pagePicker'] = array('MetaModelAttributeUrlHelper', 'singlePagePicker');
 
-		$arrFieldDef['eval']['size']     = 2;
-		$arrFieldDef['eval']['multiple'] = true;
-		$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
-		// $arrFieldDef['eval']['rgxp']     = 'url';
-
-		$arrFieldDef['wizard'][] = array('MetaModelAttributeUrlHelper', 'pagePicker');
+		if (!$this->get('trim_title'))
+		{
+			$arrFieldDef['eval']['size'] = 2;
+			$arrFieldDef['eval']['multiple'] = true;
+			$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
+			$arrFieldDef['wizard']['pagePicker'] = array('MetaModelAttributeUrlHelper', 'multiPagePicker');
+		}
 
 		return $arrFieldDef;
 	}

@@ -49,10 +49,21 @@ class MetaModelAttributeUrlHelper extends Backend
      * @param DataContainer
      * @return string
      */
-	public function pagePicker(DataContainer $dc)
+	public function singlePagePicker(DataContainer $dc)
+	{
+		$strField = 'ctrl_' . $dc->inputName;
+		return ' ' . $this->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
+	}
+	
+	/**
+     * Return the page picker wizard
+     * @param DataContainer
+     * @return string
+     */
+	public function multiPagePicker(DataContainer $dc)
 	{
 		$strField = 'ctrl_' . $dc->inputName . '_1';
-		return ' ' . $this->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'onclick="Backend.pickPage(\'' . $strField . '\')"');
+		return ' ' . $this->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
 	}
 
 }
