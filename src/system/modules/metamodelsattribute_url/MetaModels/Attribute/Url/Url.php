@@ -16,6 +16,11 @@
  * @filesource
  */
 
+namespace MetaModels\Attribute\Url;
+
+use MetaModels\Attribute\BaseSimple;
+use MetaModels\IMetaModel;
+
 /**
  * This is the MetaModelAttribute class for handling urls.
  *
@@ -24,10 +29,10 @@
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @author     Andreas Isaak <info@andreas-isaak.de>
  */
-class MetaModelAttributeUrl extends MetaModelAttributeSimple
+class Url extends BaseSimple
 {
 
-	public function __construct(\IMetaModel $objMetaModel, $arrData = array())
+	public function __construct(IMetaModel $objMetaModel, $arrData = array())
 	{
 		if (TL_MODE == 'BE')
 		{
@@ -37,11 +42,17 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 		parent::__construct($objMetaModel, $arrData);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getSQLDataType()
 	{
 		return 'blob NULL';
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getAttributeSettingNames()
 	{
 		return array_merge(parent::getAttributeSettingNames(), array(
@@ -86,17 +97,16 @@ class MetaModelAttributeUrl extends MetaModelAttributeSimple
 
 		$arrFieldDef['inputType'] = 'text';
 		$arrFieldDef['eval']['tl_class'] .= ' wizard inline';
-		$arrFieldDef['wizard']['pagePicker'] = array('MetaModelAttributeUrlHelper', 'singlePagePicker');
+		$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'singlePagePicker');
 
 		if (!$this->get('trim_title'))
 		{
 			$arrFieldDef['eval']['size'] = 2;
 			$arrFieldDef['eval']['multiple'] = true;
 			$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
-			$arrFieldDef['wizard']['pagePicker'] = array('MetaModelAttributeUrlHelper', 'multiPagePicker');
+			$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'multiPagePicker');
 		}
 
 		return $arrFieldDef;
 	}
-
 }
