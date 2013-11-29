@@ -50,11 +50,12 @@ class Url
 	/**
 	 * Return the page picker wizard
 	 *
+	 * ToDo: We should add the right interface here.
 	 * @param \DcGeneral\DataDefinition\ContainerInterface $dc
 	 *
 	 * @return string
 	 */
-	public function singlePagePicker(ContainerInterface $dc)
+	public function singlePagePicker($dc)
 	{
 		$strField = 'ctrl_' . $dc->inputName;
 		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
@@ -63,11 +64,12 @@ class Url
 	/**
 	 * Return the page picker wizard
 	 *
+	 * ToDo: We should add the right interface here.
 	 * @param \DcGeneral\DataDefinition\ContainerInterface $dc
 	 *
 	 * @return string
 	 */
-	public function multiPagePicker(ContainerInterface $dc)
+	public function multiPagePicker($dc)
 	{
 		$strField = 'ctrl_' . $dc->inputName . '_1';
 		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
