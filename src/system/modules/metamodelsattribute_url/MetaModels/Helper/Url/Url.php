@@ -57,6 +57,10 @@ class Url
 	 */
 	public function singlePagePicker($dc)
 	{
+		if(version_compare(VERSION,'3.1', '>=')){
+			$currentField = $dc->getEnvironment()->getCurrentModel()->getItem()->get($dc->field);
+			return ' <a href="contao/page.php?do='.\Input::get('do').'&amp;table='.$dc->table.'&amp;field='.$dc->field . '_' . $dc->id .'&amp;value='.str_replace(array('{{link_url::', '}}'), '', $currentField[1]).'" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']).'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\''.specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])).'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . $dc->id .'\',\'tag\':\'ctrl_' . $dc->field . '_' . $dc->id . '\',\'self\':this});return false">' . \Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+		}
 		$strField = 'ctrl_' . $dc->inputName;
 		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
 	}
@@ -71,6 +75,10 @@ class Url
 	 */
 	public function multiPagePicker($dc)
 	{
+		if(version_compare(VERSION,'3.1', '>=')){
+			$currentField = $dc->getEnvironment()->getCurrentModel()->getItem()->get($dc->field);
+			return ' <a href="contao/page.php?do='.\Input::get('do').'&amp;table='.$dc->table.'&amp;field='.$dc->field . '_' . $dc->id .'_1&amp;value='.str_replace(array('{{link_url::', '}}'), '', $currentField[1]).'" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']).'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\''.specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])).'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . $dc->id .'_1\',\'tag\':\'ctrl_' . $dc->field . '_' . $dc->id . '_1\',\'self\':this});return false">' . \Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+		}
 		$strField = 'ctrl_' . $dc->inputName . '_1';
 		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
 	}
