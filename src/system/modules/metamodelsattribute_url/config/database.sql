@@ -12,7 +12,7 @@
 --
 
 CREATE TABLE `tl_metamodel_rendersetting` (
-  `no_external_link` char(1) NOT NULL default '',
+  `no_external_link` char(1) NOT NULL default ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -22,5 +22,5 @@ CREATE TABLE `tl_metamodel_rendersetting` (
 --
 
 CREATE TABLE `tl_metamodel_attribute` (
-  `trim_title` char(1) NOT NULL default '',
+  `trim_title` char(1) NOT NULL default ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
