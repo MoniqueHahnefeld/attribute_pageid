@@ -34,11 +34,6 @@ class Url extends BaseSimple
 
 	public function __construct(IMetaModel $objMetaModel, $arrData = array())
 	{
-		if (TL_MODE == 'BE')
-		{
-			$GLOBALS['TL_CSS']['metamodelsattribute_url'] = 'system/modules/metamodelsattribute_url/html/style.css';
-		}
-
 		parent::__construct($objMetaModel, $arrData);
 	}
 
