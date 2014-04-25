@@ -31,12 +31,6 @@ use MetaModels\IMetaModel;
  */
 class Url extends BaseSimple
 {
-
-	public function __construct(IMetaModel $objMetaModel, $arrData = array())
-	{
-		parent::__construct($objMetaModel, $arrData);
-	}
-
 	/**
 	 * {@inheritdoc}
 	 */
@@ -90,15 +84,15 @@ class Url extends BaseSimple
 	{
 		$arrFieldDef = parent::getFieldDefinition($arrOverrides);
 
-		$arrFieldDef['inputType'] = 'text';
-		$arrFieldDef['eval']['tl_class'] .= ' wizard inline';
+		$arrFieldDef['inputType']            = 'text';
+		$arrFieldDef['eval']['tl_class']    .= ' wizard inline';
 		$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'singlePagePicker');
 
 		if (!$this->get('trim_title'))
 		{
-			$arrFieldDef['eval']['size'] = 2;
-			$arrFieldDef['eval']['multiple'] = true;
-			$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
+			$arrFieldDef['eval']['size']         = 2;
+			$arrFieldDef['eval']['multiple']     = true;
+			$arrFieldDef['eval']['tl_class']    .= ' metamodelsattribute_url';
 			$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'multiPagePicker');
 		}
 

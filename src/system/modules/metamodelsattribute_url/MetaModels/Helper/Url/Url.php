@@ -18,7 +18,7 @@
 
 namespace MetaModels\Helper\Url;
 
-use DcGeneral\DataDefinition\ContainerInterface;
+use ContaoCommunityAlliance\DcGeneral\DataContainerInterface;
 use MetaModels\Helper\ContaoController;
 
 /**
@@ -31,12 +31,25 @@ use MetaModels\Helper\ContaoController;
  */
 class Url
 {
+	/**
+	 * The singleton instance.
+	 *
+	 * @var Url
+	 */
 	protected static $objInstance = null;
 
+	/**
+	 * Protected constructor to make it a singleton.
+	 */
 	protected function __construct()
 	{
 	}
 
+	/**
+	 * Retrieve the singleton instance.
+	 *
+	 * @return Url
+	 */
 	public static function getInstance()
 	{
 		if (!is_object(self::$objInstance))
@@ -48,40 +61,80 @@ class Url
 	}
 
 	/**
-	 * Return the page picker wizard
+	 * Return the page picker wizard.
 	 *
-	 * ToDo: We should add the right interface here.
-	 * @param \DcGeneral\DataDefinition\ContainerInterface $dc
+	 * @param DataContainerInterface $dc The data container.
 	 *
 	 * @return string
 	 */
 	public function singlePagePicker($dc)
 	{
-		if(version_compare(VERSION,'3.1', '>=')){
+		if (version_compare(VERSION, '3.1', '>='))
+		{
 			$currentField = $dc->getEnvironment()->getCurrentModel()->getItem()->get($dc->field);
-			return ' <a href="contao/page.php?do='.\Input::get('do').'&amp;table='.$dc->table.'&amp;field='.$dc->field . '_' . ($dc->id ? $dc->id:'b' ) .'&amp;value='.str_replace(array('{{link_url::', '}}'), '', $currentField[1]).'" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']).'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\''.specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])).'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . ($dc->id ? $dc->id:'b' ) .'\',\'tag\':\'ctrl_' . $dc->field . '_' . ($dc->id ? $dc->id:'b' ) . '\',\'self\':this});return false">' . \Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+
+			return ' <a href="contao/page.php?do='.\Input::get('do') .
+			'&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '_' . ($dc->id ? $dc->id:'b' ) .
+			'&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1]) . '" title="' .
+			specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) .
+			'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' .
+			specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) .
+			'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . ($dc->id ? $dc->id : 'b' ) .'\',\'tag\':\'ctrl_' .
+			$dc->field . '_' . ($dc->id ? $dc->id:'b' ) . '\',\'self\':this});return false">' .
+			\Image::getHtml(
+				'pickpage.gif',
+				$GLOBALS['TL_LANG']['MSC']['pagepicker'],
+				'style="vertical-align:top;cursor:pointer"'
+			) . '</a>';
 		}
+
 		$strField = 'ctrl_' . $dc->inputName;
-		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
+
+		// FIXME: Remove MetaModels\Helper\ContaoController.
+		return ' ' . ContaoController::getInstance()->generateImage(
+			'pickpage.gif',
+			$GLOBALS['TL_LANG']['MSC']['pagepicker'],
+			'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"'
+		);
 	}
 
 	/**
-	 * Return the page picker wizard
+	 * Return the page picker wizard.
 	 *
-	 * ToDo: We should add the right interface here.
-	 * @param \DcGeneral\DataDefinition\ContainerInterface $dc
+	 * @param DataContainerInterface $dc The data container.
 	 *
 	 * @return string
 	 */
 	public function multiPagePicker($dc)
 	{
 		$GLOBALS['TL_CSS']['metamodelsattribute_url'] = 'system/modules/metamodelsattribute_url/html/style.css';
-		if(version_compare(VERSION,'3.1', '>=')){
+		if (version_compare(VERSION, '3.1', '>='))
+		{
 			$currentField = $dc->getEnvironment()->getCurrentModel()->getItem()->get($dc->field);
-			return ' <a href="contao/page.php?do='.\Input::get('do').'&amp;table='.$dc->table.'&amp;field='.$dc->field . '_' . ($dc->id ? $dc->id:'b' ) .'_1&amp;value='.str_replace(array('{{link_url::', '}}'), '', $currentField[1]).'" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']).'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\''.specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])).'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . ($dc->id ? $dc->id:'b' ) .'_1\',\'tag\':\'ctrl_' . $dc->field . '_' . ($dc->id ? $dc->id:'b' ) . '_1\',\'self\':this});return false">' . \Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+
+			return ' <a href="contao/page.php?do=' . \Input::get('do') .
+			'&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '_' . ($dc->id ? $dc->id :'b' ) .
+			'_1&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1]) . '" title="' .
+			specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) .
+			'" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' .
+			specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) .
+			'\',\'url\':this.href,\'id\':\'' . $dc->field . '_' . ($dc->id ? $dc->id : 'b' ) . '_1\',\'tag\':\'ctrl_' .
+			$dc->field . '_' . ($dc->id ? $dc->id : 'b' ) . '_1\',\'self\':this});return false">' .
+			\Image::getHtml(
+				'pickpage.gif',
+				$GLOBALS['TL_LANG']['MSC']['pagepicker'],
+				'style="vertical-align:top;cursor:pointer"'
+			) . '</a>';
 		}
+
 		$strField = 'ctrl_' . $dc->inputName . '_1';
-		return ' ' . ContaoController::getInstance()->generateImage('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"');
+
+		// FIXME: Remove MetaModels\Helper\ContaoController.
+		return ' ' . ContaoController::getInstance()->generateImage(
+			'pickpage.gif',
+			$GLOBALS['TL_LANG']['MSC']['pagepicker'],
+			'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'' . $strField . '\')"'
+		);
 	}
 
 }

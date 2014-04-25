@@ -29,5 +29,5 @@ $GLOBALS['TL_DCA']['tl_metamodel_attribute']['fields']['trim_title'] = array(
 	'label'                   => &$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('tl_class'=>'clr')
+	'eval'                    => array('tl_class' => 'clr')
 );
