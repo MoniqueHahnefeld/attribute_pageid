@@ -12,7 +12,7 @@
 		 bootstrap="tests/bootstrap.php"
 		>
 	<testsuites>
-		<testsuite name="MetaModels translatedalias tests">
+		<testsuite name="MetaModels url tests">
 			<directory>./tests/MetaModels/</directory>
 		</testsuite>
 	</testsuites>
@@ -25,7 +25,7 @@
 
 	<filter>
 		<whitelist>
-			<directory>./src/system/modules/metamodelsattribute_translatedalias/MetaModels/</directory>
+			<directory>./src/system/modules/metamodelsattribute_url/MetaModels/</directory>
 		</whitelist>
 	</filter>
 </phpunit>
