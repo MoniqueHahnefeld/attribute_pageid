@@ -17,19 +17,6 @@
  */
 
 /**
- * Register the classes
- */
-ClassLoader::addClasses(array
-(
-	'MetaModels\Attribute\Url\Url'       => 'system/modules/metamodelsattribute_url/MetaModels/Attribute/Url/Url.php',
-	'MetaModels\Helper\Url\Url'          => 'system/modules/metamodelsattribute_url/MetaModels/Helper/Url/Url.php',
-
-	'MetaModelAttributeUrl'              => 'system/modules/metamodelsattribute_url/deprecated/MetaModelAttributeUrl.php',
-	'MetaModelAttributeUrlHelper'        => 'system/modules/metamodelsattribute_url/deprecated/MetaModelAttributeUrlHelper.php',
-));
-
-
-/**
  * Register the templates
  */
 TemplateLoader::addFiles(array
