@@ -8,10 +8,10 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2013-06-13T12:11:56+02:00
+ * last-updated: 2013-07-10T10:07:55+02:00
  */
 
-
-$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['0']    = 'Rimuove titolo';
-$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['1']    = 'Se selezionato, viene utilizzato solo il campo link.';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['0']    = 'Senza titolo link';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['trim_title']['1']    = 'Selezionando questa opzione, viene visualizzato solo il campo link.';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['url'] = 'URL';
+
