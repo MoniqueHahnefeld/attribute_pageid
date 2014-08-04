@@ -18,7 +18,9 @@
 
 namespace MetaModels\Attribute\Url;
 
+use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\Event\ManipulateWidgetEvent;
 use MetaModels\Attribute\BaseSimple;
+use MetaModels\DcGeneral\Events\UrlWizardHandler;
 use MetaModels\IMetaModel;
 
 /**
@@ -84,17 +86,22 @@ class Url extends BaseSimple
 	{
 		$arrFieldDef = parent::getFieldDefinition($arrOverrides);
 
-		$arrFieldDef['inputType']            = 'text';
-		$arrFieldDef['eval']['tl_class']    .= ' wizard inline';
-		$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'singlePagePicker');
+		$arrFieldDef['inputType']         = 'text';
+		$arrFieldDef['eval']['tl_class'] .= ' wizard inline';
 
 		if (!$this->get('trim_title'))
 		{
-			$arrFieldDef['eval']['size']         = 2;
-			$arrFieldDef['eval']['multiple']     = true;
-			$arrFieldDef['eval']['tl_class']    .= ' metamodelsattribute_url';
-			$arrFieldDef['wizard']['pagePicker'] = array('MetaModels\Helper\Url\Url', 'multiPagePicker');
+			$arrFieldDef['eval']['size']      = 2;
+			$arrFieldDef['eval']['multiple']  = true;
+			$arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
 		}
+
+		/** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher */
+		$dispatcher = $GLOBALS['container']['event-dispatcher'];
+		$dispatcher->addListener(
+			ManipulateWidgetEvent::NAME,
+			array(new UrlWizardHandler($this->getMetaModel(), $this->getColName()), 'getWizard')
+		);
 
 		return $arrFieldDef;
 	}
