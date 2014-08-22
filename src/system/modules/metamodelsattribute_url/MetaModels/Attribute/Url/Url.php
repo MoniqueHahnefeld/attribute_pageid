@@ -21,7 +21,6 @@ namespace MetaModels\Attribute\Url;
 use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\Event\ManipulateWidgetEvent;
 use MetaModels\Attribute\BaseSimple;
 use MetaModels\DcGeneral\Events\UrlWizardHandler;
-use MetaModels\IMetaModel;
 
 /**
  * This is the MetaModelAttribute class for handling urls.
@@ -86,7 +85,11 @@ class Url extends BaseSimple
 	{
 		$arrFieldDef = parent::getFieldDefinition($arrOverrides);
 
-		$arrFieldDef['inputType']         = 'text';
+		$arrFieldDef['inputType'] = 'text';
+		if (!isset($arrFieldDef['eval']['tl_class']))
+		{
+			$arrFieldDef['eval']['tl_class'] = '';
+		}
 		$arrFieldDef['eval']['tl_class'] .= ' wizard inline';
 
 		if (!$this->get('trim_title'))
