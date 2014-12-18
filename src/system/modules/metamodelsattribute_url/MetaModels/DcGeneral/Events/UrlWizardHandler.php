@@ -83,7 +83,7 @@ class UrlWizardHandler
 			$currentField = deserialize($model->getProperty($propName), true);
 
 			/** @var GenerateHtmlEvent $imageEvent */
-			$imageEvent = $event->getEnvironment()->getEventPropagator()->propagate(
+			$imageEvent = $event->getEnvironment()->getEventDispatcher()->dispatch(
 				ContaoEvents::IMAGE_GET_HTML,
 				new GenerateHtmlEvent(
 					'pickpage.gif',
@@ -105,7 +105,7 @@ class UrlWizardHandler
 		}
 
 		/** @var GenerateHtmlEvent $imageEvent */
-		$imageEvent = $event->getEnvironment()->getEventPropagator()->propagate(
+		$imageEvent = $event->getEnvironment()->getEventDispatcher()->dispatch(
 			ContaoEvents::IMAGE_GET_HTML,
 			new GenerateHtmlEvent(
 				'pickpage.gif',
