@@ -9,6 +9,7 @@
  * @package    MetaModels
  * @subpackage Tests
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author     Christopher Boelter <christopher@boelter.eu>
  * @copyright  The MetaModels team.
  * @license    LGPL.
  * @filesource
@@ -32,4 +33,4 @@ if (
 	exit(1);
 }
 
-$loader->add('MetaModels\Attribute\Timestamp\Test', __DIR__);
+$loader->add('MetaModels\Test', __DIR__);
