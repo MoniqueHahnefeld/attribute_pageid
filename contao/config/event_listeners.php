@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The MetaModels extension allows the creation of multiple collections of custom items,
  * each with its own unique set of selectable attributes, with attribute extendability.
@@ -10,13 +9,23 @@
  *
  * @package    MetaModels
  * @subpackage AttributeUrl
+ * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @author     Andreas Isaak <info@andreas-isaak.de>
  * @author     Christopher Boelter <christopher@boelter.eu>
- * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @copyright  The MetaModels team.
- * @license    LGPL.
+ * @license    LGPL-3+.
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['url']['class'] = 'MetaModels\Attribute\Url\Url';
-$GLOBALS['METAMODELS']['attributes']['url']['image'] = 'system/modules/metamodelsattribute_url/html/url.png';
+use MetaModels\Attribute\Url\AttributeTypeFactory;
+use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
+use MetaModels\MetaModelsEvents;
+
+return array(
+    MetaModelsEvents::ATTRIBUTE_FACTORY_CREATE => array(
+        function (CreateAttributeFactoryEvent $event) {
+            $factory = $event->getFactory();
+            $factory->addTypeFactory(new AttributeTypeFactory());
+        }
+    )
+);
