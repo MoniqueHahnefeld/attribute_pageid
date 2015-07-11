@@ -6,6 +6,6 @@ For documentation visit:
   https://github.com/phpcq/phpcq
 
 -->
-<project name="MetaModels attribute url" default="build">
+<project name="metamodels/attribute_url" default="build">
     <import file="vendor/phpcq/phpcq/phpcq.main.xml"/>
 </project>
