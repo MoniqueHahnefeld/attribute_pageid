@@ -18,7 +18,7 @@
  * @filesource
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['url'] = array
+$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['pageid'] = array
 (
 	'presentation' => array(
 		'tl_class',

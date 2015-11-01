@@ -22,7 +22,7 @@
  * Table tl_metamodel_rendersetting
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['metapalettes']['url extends default'] = array
+$GLOBALS['TL_DCA']['tl_metamodel_rendersetting']['metapalettes']['pageid extends default'] = array
 (
     '+advanced' => array('no_external_link'),
 );

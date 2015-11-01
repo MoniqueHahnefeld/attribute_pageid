@@ -23,5 +23,5 @@
  */
 TemplateLoader::addFiles(array
 (
-	'mm_attr_url'              => 'system/modules/metamodelsattribute_url/templates',
+	'mm_attr_pageid'              => 'system/modules/metamodelsattribute_pageid/templates',
 ));

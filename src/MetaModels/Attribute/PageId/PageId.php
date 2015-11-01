@@ -20,11 +20,11 @@
  * @filesource
  */
 
-namespace MetaModels\Attribute\Url;
+namespace MetaModels\Attribute\PageId;
 
 use ContaoCommunityAlliance\DcGeneral\Contao\View\Contao2BackendView\Event\ManipulateWidgetEvent;
 use MetaModels\Attribute\BaseSimple;
-use MetaModels\DcGeneral\Events\UrlWizardHandler;
+use MetaModels\DcGeneral\Events\PageIdWizardHandler;
 
 /**
  * This is the MetaModelAttribute class for handling urls.
@@ -34,7 +34,7 @@ use MetaModels\DcGeneral\Events\UrlWizardHandler;
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @author     Andreas Isaak <info@andreas-isaak.de>
  */
-class Url extends BaseSimple
+class PageId extends BaseSimple
 {
     /**
      * {@inheritdoc}
@@ -94,16 +94,16 @@ class Url extends BaseSimple
         $arrFieldDef['eval']['tl_class'] .= ' wizard inline';
 
         if (!$this->get('trim_title')) {
-            $arrFieldDef['eval']['size']      = 2;
-            $arrFieldDef['eval']['multiple']  = true;
-            $arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_url';
+            $arrFieldDef['eval']['size']      = 1;
+            $arrFieldDef['eval']['multiple']  = false;
+            $arrFieldDef['eval']['tl_class'] .= ' metamodelsattribute_pageid';
         }
 
         /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher */
         $dispatcher = $this->getMetaModel()->getServiceContainer()->getEventDispatcher();
         $dispatcher->addListener(
             ManipulateWidgetEvent::NAME,
-            array(new UrlWizardHandler($this->getMetaModel(), $this->getColName()), 'getWizard')
+            array(new PageIdWizardHandler($this->getMetaModel(), $this->getColName()), 'getWizard')
         );
 
         return $arrFieldDef;

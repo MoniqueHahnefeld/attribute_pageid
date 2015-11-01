@@ -17,7 +17,7 @@
  * @filesource
  */
 
-use MetaModels\Attribute\Url\AttributeTypeFactory;
+use MetaModels\Attribute\PageId\AttributeTypeFactory;
 use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
 use MetaModels\MetaModelsEvents;
 

@@ -1,6 +1,6 @@
 {
-  "name": "designs2/attribute_url",
-  "description": "MetaModels attribute for urls",
+  "name": "designs2/attribute_pageid",
+  "description": "MetaModels attribute for pageids",
   "keywords": [
     "contao",
     "metamodels",
@@ -25,10 +25,10 @@
   ],
   "support": {
     "email": "mail@metamodel.me",
-    "issues": "https://github.com/MetaModels/attribute_url/issues",
+    "issues": "https://github.com/MetaModels/attribute_pageid/issues",
     "wiki": "http://de.contaowiki.org/MetaModels",
     "irc": "irc://irc.freenode.org/contao.mm",
-    "source": "https://github.com/designs2/attribute_url"
+    "source": "https://github.com/designs2/attribute_pageid"
   },
   "require": {
     "php": ">=5.3",
@@ -52,11 +52,11 @@
   "extra": {
     "contao": {
       "symlinks": {
-        "contao": "system/modules/metamodelsattribute_url"
+        "contao": "system/modules/metamodelsattribute_pageid"
       },
       "transifex": {
         "project": "metamodels",
-        "prefix": "attribute_url-",
+        "prefix": "attribute_pageid-",
         "languages_cto": "contao/languages",
         "languages_tx": ".tx"
       }

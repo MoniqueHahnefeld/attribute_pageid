@@ -23,7 +23,7 @@
  * Table tl_metamodel_attribute
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['url extends _simpleattribute_'] = array
+$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['pageid extends _simpleattribute_'] = array
 (
     '+display' => array('trim_title')
 );

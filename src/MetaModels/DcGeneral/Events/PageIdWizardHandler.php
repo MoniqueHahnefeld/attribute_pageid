@@ -29,7 +29,7 @@ use MetaModels\IMetaModel;
  *
  * @package MetaModels\DcGeneral\Events
  */
-class UrlWizardHandler
+class PageIdWizardHandler
 {
     /**
      * The MetaModel instance this handler should react on.
@@ -77,7 +77,7 @@ class UrlWizardHandler
         $inputId    = $propName . (!$this->metaModel->getAttribute($this->propertyName)->get('trim_title') ? '_1' : '');
         $translator = $event->getEnvironment()->getTranslator();
 
-        $this->addStylesheet('metamodelsattribute_url', 'system/modules/metamodelsattribute_url/html/style.css');
+        $this->addStylesheet('metamodelsattribute_pageid', 'system/modules/metamodelsattribute_pageid/html/style.css');
 
         if (version_compare(VERSION, '3.1', '>=')) {
             $currentField = deserialize($model->getProperty($propName), true);
@@ -94,7 +94,7 @@ class UrlWizardHandler
 
             $event->getWidget()->wizard = ' <a href="contao/page.php?do=' . \Input::get('do') .
                 '&amp;table=' . $this->metaModel->getTableName() . '&amp;field=' . $inputId .
-                '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1]) . '" title="' .
+                '&amp;value=' . $currentField[0] . '" title="' .
                 specialchars($translator->translate('pagepicker', 'MSC')) .
                 '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' .
                 specialchars(str_replace("'", "\\'", $translator->translate('page.0', 'MOD'))) .
