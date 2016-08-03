@@ -126,4 +126,12 @@ class Url extends BaseSimple
 
         return $value;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeData($value)
+    {
+        return is_array($value) ? serialize($value) : $value;
+    }
 }
