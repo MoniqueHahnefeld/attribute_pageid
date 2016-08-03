@@ -108,7 +108,7 @@ class Url extends BaseSimple
     }
 
     /**
-     * Take the raw data from the DB column and unserialize it.
+     * Unserialize the value from the database if possible, return the value as is otherwise.
      *
      * @param mixed $value The array of data from the database.
      *
@@ -116,12 +116,12 @@ class Url extends BaseSimple
      */
     public function unserializeData($value)
     {
-        if (!is_array($value) && (substr($value, 0, 2) == 'a:')) {
-            $unSerialized = unserialize($value);
+        if (is_array($value)) {
+            return $value;
         }
 
-        if (isset($unSerialized) && is_array($unSerialized)) {
-            return $unSerialized;
+        if (substr($value, 0, 2) == 'a:') {
+            return unserialize($value);
         }
 
         return $value;
