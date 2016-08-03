@@ -17,6 +17,7 @@
  * @author     Andreas Isaak <info@andreas-isaak.de>
  * @author     Christopher Boelter <christopher@boelter.eu>
  * @author     Oliver Hoff <oliver@hofff.com>
+ * @author     Ingolf Steinhardt <info@e-spin.de>
  * @copyright  2012-2016 The MetaModels team.
  * @license    https://github.com/MetaModels/attribute_url/blob/master/LICENSE LGPL-3.0
  * @filesource
@@ -104,5 +105,33 @@ class Url extends BaseSimple
         );
 
         return $arrFieldDef;
+    }
+
+    /**
+     * Unserialize the value from the database if possible, return the value as is otherwise.
+     *
+     * @param mixed $value The array of data from the database.
+     *
+     * @return array
+     */
+    public function unserializeData($value)
+    {
+        if (is_array($value)) {
+            return $value;
+        }
+
+        if (substr($value, 0, 2) == 'a:') {
+            return unserialize($value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeData($value)
+    {
+        return is_array($value) ? serialize($value) : $value;
     }
 }
