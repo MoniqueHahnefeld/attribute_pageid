@@ -63,8 +63,8 @@ class Url extends BaseSimple
             $varValue = $varValue[1];
         }
 
-        if ($varValue === NULL) {
-            $varValue = $this->get('trim_title') ? NULL : array(0 => '', 1 => '');
+        if ($varValue === null) {
+            $varValue = $this->get('trim_title') ? null : array(0 => '', 1 => '');
         }
 
         return parent::valueToWidget($varValue);
@@ -79,9 +79,10 @@ class Url extends BaseSimple
             $varValue = array(0 => '', 1 => $varValue);
         }
 
-        if (($this->get('trim_title') && empty($varValue[1])) || 
-            (!$this->get('trim_title') && empty($varValue[0]) && empty($varValue[1]))) {
-            $varValue = NULL;
+        if (($this->get('trim_title') && empty($varValue[1])) ||
+            (!$this->get('trim_title') && empty($varValue[0]) && empty($varValue[1]))
+        ) {
+            $varValue = null;
         }
 
         return parent::widgetToValue($varValue, $intId);

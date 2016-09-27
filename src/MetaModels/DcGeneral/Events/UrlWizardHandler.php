@@ -98,8 +98,8 @@ class UrlWizardHandler
                                       '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1])
                                       . '" title="' .
                                       specialchars($translator->translate('pagepicker', 'MSC')) .
-                                      '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\''
-                                      .
+                                      '" onclick="Backend.getScrollOffset();'.
+                                      'Backend.openModalSelector({\'width\':765,\'title\':\'' .
                                       specialchars(str_replace("'", "\\'", $translator->translate('page.0', 'MOD'))) .
                                       '\',\'url\':this.href,\'id\':\'' . $inputId . '\',\'tag\':\'ctrl_' . $inputId
                                       . '\',\'self\':this});' .
