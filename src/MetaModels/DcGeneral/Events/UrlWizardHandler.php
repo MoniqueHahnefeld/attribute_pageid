@@ -81,30 +81,7 @@ class UrlWizardHandler
 
         $this->addStylesheet('metamodelsattribute_url', 'system/modules/metamodelsattribute_url/html/style.css');
 
-        if (version_compare(VERSION, '3.1', '>=')) {
-            $currentField = deserialize($model->getProperty($propName), true);
-
-            /** @var GenerateHtmlEvent $imageEvent */
-            $imageEvent = $event->getEnvironment()->getEventDispatcher()->dispatch(
-                ContaoEvents::IMAGE_GET_HTML,
-                new GenerateHtmlEvent(
-                    'pickpage.gif',
-                    $translator->translate('pagepicker', 'MSC'),
-                    'style="vertical-align:top;cursor:pointer"'
-                )
-            );
-
-            $event->getWidget()->wizard = ' <a href="contao/page.php?do=' . \Input::get('do') .
-                '&amp;table=' . $this->metaModel->getTableName() . '&amp;field=' . $inputId .
-                '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1]) . '" title="' .
-                specialchars($translator->translate('pagepicker', 'MSC')) .
-                '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' .
-                specialchars(str_replace("'", "\\'", $translator->translate('page.0', 'MOD'))) .
-                '\',\'url\':this.href,\'id\':\'' . $inputId . '\',\'tag\':\'ctrl_' . $inputId . '\',\'self\':this});' .
-                'return false">' . $imageEvent->getHtml() . '</a>';
-
-            return;
-        }
+        $currentField = deserialize($model->getProperty($propName), true);
 
         /** @var GenerateHtmlEvent $imageEvent */
         $imageEvent = $event->getEnvironment()->getEventDispatcher()->dispatch(
@@ -112,11 +89,21 @@ class UrlWizardHandler
             new GenerateHtmlEvent(
                 'pickpage.gif',
                 $translator->translate('pagepicker', 'MSC'),
-                'style="vertical-align:top;cursor:pointer" onclick="Backend.pickPage(\'ctrl_' . $inputId . '\')"'
+                'style="vertical-align:top;cursor:pointer"'
             )
         );
 
-        $event->getWidget()->wizard = ' ' . $imageEvent->getHtml();
+        $event->getWidget()->wizard = ' <a href="contao/page.php?do=' . \Input::get('do') .
+                                      '&amp;table=' . $this->metaModel->getTableName() . '&amp;field=' . $inputId .
+                                      '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $currentField[1])
+                                      . '" title="' .
+                                      specialchars($translator->translate('pagepicker', 'MSC')) .
+                                      '" onclick="Backend.getScrollOffset();'.
+                                      'Backend.openModalSelector({\'width\':765,\'title\':\'' .
+                                      specialchars(str_replace("'", "\\'", $translator->translate('page.0', 'MOD'))) .
+                                      '\',\'url\':this.href,\'id\':\'' . $inputId . '\',\'tag\':\'ctrl_' . $inputId
+                                      . '\',\'self\':this});' .
+                                      'return false">' . $imageEvent->getHtml() . '</a>';
     }
 
     /**
